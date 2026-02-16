@@ -28,6 +28,18 @@ const topicSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
+    easeFactor: {
+        type: Number,
+        default: 2.5,
+    },
+    interval: {
+        type: Number,
+        default: 0,
+    },
+    nextReviewDate: {
+        type: Date,
+        default: Date.now,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

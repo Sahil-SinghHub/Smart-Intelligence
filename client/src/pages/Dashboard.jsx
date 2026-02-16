@@ -177,7 +177,7 @@ const Dashboard = () => {
                                         className="text-xs py-1 px-2 h-auto text-purple-300 hover:text-purple-200"
                                         onClick={() => window.location.href = `/generate-test?topicId=${item._id}`}
                                     >
-                                        Generate AI Test
+                                        Take AI Test
                                     </Button>
                                 </div>
                             </div>

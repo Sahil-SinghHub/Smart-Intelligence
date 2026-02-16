@@ -31,6 +31,10 @@ const testResultSchema = new mongoose.Schema({
         type: Number, // Percentage
         required: true,
     },
+    timeTaken: {
+        type: Number, // Seconds
+        default: 0,
+    },
     date: {
         type: Date,
         default: Date.now,

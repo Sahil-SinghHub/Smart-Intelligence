@@ -22,11 +22,12 @@ const getGeneratedTest = async (req, res) => {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const testData = generateTest(
+        const testData = await generateTest(
             topic.topicName,
             topic.subject,
             topic.keyPoints,
-            topic.difficulty
+            topic.difficulty,
+            topic.priority
         );
 
         res.json(testData);
@@ -85,8 +86,11 @@ const getRevisionPlan = async (req, res) => {
             const nextTestDays = suggestNextTest(analysis.classification);
 
             // Calculate next test date
-            const nextTestDate = new Date();
-            nextTestDate.setDate(nextTestDate.getDate() + nextTestDays);
+            // FIX: Use the stored nextReviewDate if available, otherwise calculate default
+            const nextTestDate = topic.nextReviewDate ? new Date(topic.nextReviewDate) : new Date();
+            if (!topic.nextReviewDate) {
+                nextTestDate.setDate(nextTestDate.getDate() + nextTestDays);
+            }
 
             return {
                 _id: topic._id,
